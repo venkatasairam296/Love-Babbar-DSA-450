@@ -1,5 +1,6 @@
 class Solution {
   public:
+    //Solution: Single Pointer Approach
     string reverseString(string& s) {
         // code here
         int n = s.length();
