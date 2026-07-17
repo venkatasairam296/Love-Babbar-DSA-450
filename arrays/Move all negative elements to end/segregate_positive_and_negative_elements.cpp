@@ -1,31 +1,30 @@
 /*
 ------------------------------------------------------------
 Problem:
-Given an array of integers, move all positive elements to the
-beginning of the array and all negative elements to the end
-while preserving their relative order.
+Given an array of integers, rearrange the elements such that all
+non-negative elements appear first, followed by all negative
+elements, while preserving the relative order of appearance.
 
-Approach: Extra Array (Stable Partition)
+Approach: Temporary Array (Stable Partition)
 
 Logic:
-- Create a temporary array of the same size.
-- Traverse the original array and copy all positive elements
-  into the temporary array.
+- Create a temporary array of the same size as the original array.
+- Traverse the array and copy all non-negative elements into the
+  temporary array.
 - Traverse the array again and copy all negative elements.
-- Copy the temporary array back to the original array.
-- Since elements are copied in their original order, the
-  relative ordering of both positive and negative elements
-  remains unchanged.
+- Copy the rearranged elements back to the original array.
+- This approach preserves the relative order of both positive and
+  negative elements.
 
 Example:
 Input:
 arr = [-5, 7, -3, 4, -2, 8]
 
 Step-by-step:
-Positive elements -> [7, 4, 8]
-Negative elements -> [-5, -3, -2]
+Positive/Zero elements -> [7, 4, 8]
+Negative elements      -> [-5, -3, -2]
 
-Final array:
+Merged array:
 [7, 4, 8, -5, -3, -2]
 
 Output:
@@ -33,8 +32,9 @@ Output:
 
 Time Complexity:
 O(n)
-- Two traversals to build the temporary array.
-- One traversal to copy the result back.
+- One traversal for non-negative elements.
+- One traversal for negative elements.
+- One traversal to copy back.
 
 Space Complexity:
 O(n)
@@ -49,12 +49,11 @@ public:
 
         // Temporary array to store the rearranged elements
         vector<int> temp(n);
-
         int idx = 0;
 
-        // Store all positive elements first
+        // Store all non-negative elements first
         for (int i = 0; i < n; i++) {
-            if (arr[i] > 0) {
+            if (arr[i] >= 0) {
                 temp[idx++] = arr[i];
             }
         }
